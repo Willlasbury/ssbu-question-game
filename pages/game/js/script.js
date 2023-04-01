@@ -3,15 +3,16 @@
 let timeScoreH2 = document.querySelector("#timeScore");
 
 // question
-let question = document.querySelector("#question");
-// start button
-let startBtn = document.querySelector("#startBtn");
-
+let questionLi = document.querySelector("#question");
 // answer spans
 let aSpan = document.querySelector("#aSpan");
 let bSpan = document.querySelector("#bSpan");
 let cSpan = document.querySelector("#cSpan");
 let dSpan = document.querySelector("#dSpan");
+
+
+
+
 
 // define all questions and answers
 class QuestionAnswer {
@@ -21,6 +22,11 @@ class QuestionAnswer {
     this.answer = answer;
   }
 }
+// place holder for question
+let questionAnswer1 = new QuestionAnswer(
+  'this question?', ['a','b','c','d'], 'c'
+)
+
 // start timer at top of screen
 // create var for storing time
 let timeOnClock = 10;
@@ -52,6 +58,14 @@ let scoreTimer = setInterval(function () {
 }, 100);
 
 // TODO: create first instance of question and answer
+  // grab my vars and populate with question
+  question.textContent = questionAnswer1.question
+  console.log(questionAnswer1.potAnsersers[1])
+  aSpan.textContent = questionAnswer1.potAnsersers[0]
+  bSpan.textContent = questionAnswer1.potAnsersers[1]
+  cSpan.textContent = questionAnswer1.potAnsersers[2]
+  dSpan.textContent = questionAnswer1.potAnsersers[3]
+
 
 // TODO: grab which answer the user clicked on
 // TODO: if answer was correct
