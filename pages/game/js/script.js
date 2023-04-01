@@ -78,9 +78,10 @@ let scoreTimer = setInterval(function () {
 
 // TODO: grab which answer the user clicked on
 answerUl.addEventListener('click', function(event){
-  chosenAnswer = event.target
+  chosenAnswer = event.target.outerText
+  let correctAnswer = questionAnswer1.answer
   // console.log(event.target.outerText)
-  if (chosenAnswer.outerText === questionAnswer1.answer){
+  if (chosenAnswer === correctAnswer){
     console.log('success')
   } else {
     console.log('wrong')

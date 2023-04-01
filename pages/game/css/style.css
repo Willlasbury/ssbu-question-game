@@ -1,3 +1,7 @@
+* {
+    font-size: 16px;
+}
+
 body {
     background-color: salmon;
 }
@@ -18,8 +22,8 @@ main {
 
 ul{
     border: solid black 2px;
-    width: 80vw;
-    height: 80vh;
+    /* width: 80vw;
+    height: 80vh; */
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -30,10 +34,12 @@ li {
     border: solid black 2px;
     height: 10vh;
     width: 15vh;
-    margin:10px;
+    /* margin:1vh 0vh; */
+    font-size: 3rem;
     display: flex;
     flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
 }
 
 #answerA, #answerD {
