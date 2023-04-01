@@ -40,6 +40,12 @@ li {
     justify-content: flex-start;
 }
 
-#answerA {
-    width: 100%;
+#answerA, #answerD {
+    display: flex;
+    flex-basis: 100%;
+    
+}
+#answerB, #answerC {
+    display: flex;
+    flex-basis: 45%;
 }
