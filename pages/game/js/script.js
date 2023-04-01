@@ -1,9 +1,11 @@
+import { questionList } from "./questions.js";
+
 // grab variables from DOM for dynamic elements on page
 // timer
 let timeScoreH2 = document.querySelector("#timeScore");
 
 // question
-let questionLi = document.querySelector("#question");
+let questionH3 = document.querySelector("#question");
 
 // answer boxes
 let aLi = document.querySelector("#answerA");
@@ -30,7 +32,7 @@ class QuestionAnswer {
 }
 // place holder for question
 let questionAnswer1 = new QuestionAnswer(
-  "this question?",
+  "this hello?",
   ["up", "right", "left", "down"],
   "up"
 );
@@ -68,7 +70,7 @@ let scoreTimer = setInterval(function () {
 
 // TODO: create first instance of question and answer
 // grab my vars and populate with question
-question.textContent = questionAnswer1.question;
+questionH3.textContent = questionAnswer1.question;
 aSpan.textContent = questionAnswer1.potAnsersers[0];
 bSpan.textContent = questionAnswer1.potAnsersers[1];
 cSpan.textContent = questionAnswer1.potAnsersers[2];
@@ -77,23 +79,27 @@ dSpan.textContent = questionAnswer1.potAnsersers[3];
 // score tracker
 localStorage.setItem("score", timeOnClock);
 
-// TODO: grab which answer the user clicked on
+//grab which answer the user clicked on
 answerUl.addEventListener("click", function (event) {
   chosenAnswer = event.target.outerText;
   let correctAnswer = questionAnswer1.answer;
-  // console.log(event.target.outerText)
   if (chosenAnswer === correctAnswer) {
-    // TODO: if answer was correct
-    // TODO: display correct and do not subtract from time
     timeOnClock += 3;
     updateDisplayScore();
   } else {
-    // TODO: if answer was wrong display
-    // TODO: display correct answer and subtract from time
     timeOnClock -= 5;
     updateDisplayScore();
   }
 });
 
 // TODO: change question and answers to next option
+function updateQuestion(questionAnswer) {
+
+  
+}
+
 // TODO: randomly select question and anser to display next
+
+
+
+console.log(questionList[0].correctAnswer)
