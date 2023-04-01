@@ -4,11 +4,21 @@ let timeScoreH2 = document.querySelector("#timeScore");
 
 // question
 let questionLi = document.querySelector("#question");
+
+// answer boxes
+let aLi = document.querySelector('#answerA')
+let bLi = document.querySelector('#answerA')
+let cLi = document.querySelector('#answerA')
+let dLi = document.querySelector('#answerA')
+
 // answer spans
 let aSpan = document.querySelector("#aSpan");
 let bSpan = document.querySelector("#bSpan");
 let cSpan = document.querySelector("#cSpan");
 let dSpan = document.querySelector("#dSpan");
+
+// Grab answer list container
+let answerUl = document.querySelector("ul")
 
 
 
@@ -24,7 +34,7 @@ class QuestionAnswer {
 }
 // place holder for question
 let questionAnswer1 = new QuestionAnswer(
-  'this question?', ['a','b','c','d'], 'c'
+  'this question?', ['up','right','left','down'], 'up'
 )
 
 // start timer at top of screen
@@ -60,7 +70,6 @@ let scoreTimer = setInterval(function () {
 // TODO: create first instance of question and answer
   // grab my vars and populate with question
   question.textContent = questionAnswer1.question
-  console.log(questionAnswer1.potAnsersers[1])
   aSpan.textContent = questionAnswer1.potAnsersers[0]
   bSpan.textContent = questionAnswer1.potAnsersers[1]
   cSpan.textContent = questionAnswer1.potAnsersers[2]
@@ -68,6 +77,17 @@ let scoreTimer = setInterval(function () {
 
 
 // TODO: grab which answer the user clicked on
+answerUl.addEventListener('click', function(event){
+  chosenAnswer = event.target
+  // console.log(event.target.outerText)
+  if (chosenAnswer.outerText === questionAnswer1.answer){
+    console.log('success')
+  } else {
+    console.log('wrong')
+  }
+  
+})
+
 // TODO: if answer was correct
 // TODO: display correct and do not subtract from time
 // TODO: if answer was wrong display
