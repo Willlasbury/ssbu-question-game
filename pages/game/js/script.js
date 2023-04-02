@@ -19,12 +19,11 @@ let answerUl = document.querySelector("ul");
 // save which question was chosen to prevent repeats
 let usedQuestions = [];
 
-let questionAnswer = updateQuestion()
-
+let questionAnswer = updateQuestion();
 
 // start timer at top of screen
 // create var for storing time
-let timeOnClock = 10;
+let timeOnClock = 100;
 // give initial time before timer starts
 timeScoreH2.textContent = `${timeOnClock} seconds left`;
 // store time locally
@@ -34,24 +33,26 @@ function updateDisplayScore(timeLeft) {
 }
 
 // time tracker
-let scoreTimer = setInterval(function () {
-  if (timeOnClock > 1) {
-    timeOnClock--;
-    timeScoreH2.textContent = `${timeOnClock} seconds left`;
-    updateDisplayScore(timeOnClock);
-  } else if (timeOnClock === 1) {
-    timeOnClock--;
-    timeScoreH2.textContent = `${timeOnClock} second left`;
-    updateDisplayScore(timeOnClock);
-  } else {
-    // stop timer at zero
-    clearInterval(scoreTimer);
-    updateDisplayScore(timeOnClock);
-    // TODO: create lose conditions
+function scoreTracker(time) {
+  let scoreTimer = setInterval(function () {
+    if (time > 1) {
+      time--;
+      timeScoreH2.textContent = `${time} seconds left`;
+      updateDisplayScore(time);
+    } else if (time === 1) {
+      time--;
+      timeScoreH2.textContent = `${time} second left`;
+      updateDisplayScore(time);
+    } else {
+      // stop timer at zero
+      clearInterval(scoreTimer);
+      updateDisplayScore(time);
+      // TODO: create lose conditions
 
-    ("you lose");
-  }
-}, 100);
+      ("you lose");
+    }
+  }, 1000);
+}
 
 // TODO: create first instance of question and answer
 // grab my vars and populate with question
@@ -65,36 +66,33 @@ let scoreTimer = setInterval(function () {
 localStorage.setItem("score", timeOnClock);
 
 // grab which answer the user clicked on
+
 answerUl.addEventListener("click", function (event) {
   let chosenAnswer = event.target.outerText;
   let correctAnswer = questionAnswer.correctAnswer;
-  console.log('correct answer:', correctAnswer)
+  console.log("correct answer:", correctAnswer);
   if (chosenAnswer === correctAnswer) {
     timeOnClock += 3;
     updateDisplayScore();
-    questionAnswer = updateQuestion()
-  }else if (timeOnClock <=0){
+    questionAnswer = updateQuestion();
+  } else if (timeOnClock <= 0) {
     // TODO: move on to some sort of screen
-    updateDisplayScore('0')
-
-  } 
-  else {
+    updateDisplayScore("0");
+  } else {
     timeOnClock -= 5;
     updateDisplayScore();
-    questionAnswer = updateQuestion()
+    questionAnswer = updateQuestion();
   }
 });
-
 
 // TODO: change question and answers to next option
 function updateQuestion() {
   // choose random question
   let questionSet =
     questionList[Math.floor(Math.random() * questionList.length)];
-  if (usedQuestions.length === questionList.length){
+  if (usedQuestions.length === questionList.length) {
     // TODO: exit quiz
-  }
-  else if (usedQuestions.includes(questionSet.question)) {
+  } else if (usedQuestions.includes(questionSet.question)) {
     return updateQuestion();
   } else {
     questionH3.textContent = questionSet.question;
@@ -104,7 +102,10 @@ function updateQuestion() {
     dSpan.textContent = questionSet.potAnswers[3];
     usedQuestions.push(questionSet.question);
   }
-  return questionSet
+  return questionSet;
 }
-export let finalScore = timeOnClock
+
+
 // TODO: randomly select question and anser to display next
+
+scoreTracker(timeOnClock);

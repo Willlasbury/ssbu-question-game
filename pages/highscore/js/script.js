@@ -1,11 +1,13 @@
-import { finalScore } from "../../game/js/script";
+import { finalScore } from "../../game/js/script.js";
 
-inputArray = ["first-initial", "middle-initial", "last-initial"];
+// import finalScore)
 
-finalScore = 45
+let inputArray = ["first-initial", "middle-initial", "last-initial"];
+
+
 // pull value from input field
 function getVal(selector) {
-  var input = document.querySelector(`#${selector}`).value;
+  let input = document.querySelector(`#${selector}`).value;
   // console.log("input:", input)
   return input;
 }
