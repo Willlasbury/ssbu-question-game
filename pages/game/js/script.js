@@ -7,12 +7,6 @@ let timeScoreH2 = document.querySelector("#timeScore");
 // question
 let questionH3 = document.querySelector("#question");
 
-// answer boxes
-// let aLi = document.querySelector("#answerA");
-// let bLi = document.querySelector("#answerA");
-// let cLi = document.querySelector("#answerA");
-// let dLi = document.querySelector("#answerA");
-
 // answer spans
 let aSpan = document.querySelector("#aSpan");
 let bSpan = document.querySelector("#bSpan");
@@ -26,20 +20,7 @@ let answerUl = document.querySelector("ul");
 let usedQuestions = [];
 
 let questionAnswer = updateQuestion()
-// define all questions and answers
-// class QuestionAnswer {
-//   constructor(question, potAnsersers, answer) {
-//     this.question = question;
-//     this.potAnsersers = potAnsersers;
-//     this.answer = answer;
-//   }
-// }
-// place holder for question
-// let questionAnswer1 = new QuestionAnswer(
-//   "this hello?",
-//   ["up", "right", "left", "down"],
-//   "up"
-// );
+
 
 // start timer at top of screen
 // create var for storing time
@@ -56,7 +37,7 @@ function updateDisplayScore() {
 let scoreTimer = setInterval(function () {
   if (timeOnClock > 1) {
     timeOnClock--;
-    // timeScoreH2.textContent = `${timeOnClock} seconds left`;
+    timeScoreH2.textContent = `${timeOnClock} seconds left`;
     updateDisplayScore();
   } else if (timeOnClock === 1) {
     timeOnClock--;
@@ -83,18 +64,19 @@ let scoreTimer = setInterval(function () {
 // score tracker
 localStorage.setItem("score", timeOnClock);
 
-//grab which answer the user clicked on
+// grab which answer the user clicked on
 answerUl.addEventListener("click", function (event) {
   let chosenAnswer = event.target.outerText;
-  let correctAnswer = questionAnswer.answer;
+  let correctAnswer = questionAnswer.correctAnswer;
+  console.log('correct answer:', correctAnswer)
   if (chosenAnswer === correctAnswer) {
     timeOnClock += 3;
     updateDisplayScore();
-    updateQuestion()
+    questionAnswer = updateQuestion()
   } else {
     timeOnClock -= 5;
     updateDisplayScore();
-    updateQuestion()
+    questionAnswer = updateQuestion()
   }
 });
 
