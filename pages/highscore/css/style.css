@@ -1,38 +1,104 @@
 :root {
-    --primary-color : #FFC600;
-    --secondary-color: #FF0000;
+    --primary-font-color: #FF0000;
+    --secondary-font-color: #FFC600;
+    --primary-background-color: rgba(12, 12, 12, 0.931);
+    --secondary-background-color: rgba(100, 100, 100, 0.218);
 }
 
 * {
     font-size: 16px;
     font-family: 'IBM Plex Sans', sans-serif;
 }
+
 body {
-    background-color: salmon;
+    background-color: var(--primary-background-color);
+
 }
-header{
+
+header {
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;  
+    justify-content: center;
+    align-items: center;
 }
-h1{
+
+h1 {
     font-family: 'IBM Plex Sans', sans-serif;
     /* font-family:  sans-serif; */
     font-weight: 900;
     font-size: 5rem;
-    background-image: linear-gradient(180deg ,var(--primary-color), var(--secondary-color));
+    background-image: -webkit-linear-gradient(90deg, var(--primary-font-color), var(--primary-font-color), var(--secondary-font-color), var(--primary-font-color), var(--primary-font-color));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+h2 {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-family:  sans-serif;
+    font-weight: 900;
+    font-size: 1.9rem;
+    padding: 1rem;
+    margin: 1rem;
+    /* height: 5vh; */
+    background-image: -webkit-linear-gradient(90deg, var(--primary-font-color), var(--primary-font-color), var(--secondary-font-color), var(--primary-font-color), var(--primary-font-color));
     -webkit-background-clip: text;
     color: transparent;
 }
 
 main {
-    display:flex;
-    flex-flow: column nowrap;
-    justify-content: center;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
     align-items: center;
 }
-main section {
-    border: solid black 2px;
-    display: flex;
 
+
+#highScore {
+    background-color: var(--secondary-background-color);
+    border: solid var(--primary-background-color) 2px;
+    border-radius: 2%;
+    height: 80vh;
+    width: 25vw;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+#logInitials {
+    background-color: var(--secondary-background-color);
+    border: solid var(--primary-background-color) 2px;
+    border-radius: 2%;
+    height: 80vh;
+    width: 65vw;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+form {
+    /* border: #FF0000 solid 2px; */
+    height: 75vh;
+    width: 60vw;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+input {
+    background-color: var(--secondary-background-color);
+    border: solid var(--primary-background-color) 2px;
+    height: 20vh;
+    width: 15vw;
+    border-radius: 4%;
+    margin: 1rem;
+    font-size: 7rem;
+    text-align: center;
+    text-transform: capitalize;
+    caret-color: transparent;
+
+     
 }

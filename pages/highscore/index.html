@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>QUIZ CLEAR</h1>
+      <h1>QUIZ CLEAR</h1>
     </header>
     <main>
-        <section id="logInitials"> <h2>Please input your initials</h2></section>
-        <section id="highScore"></section>
+      <section id="logInitials">
+        <h2>PLEASE INPUT YOUR INITIALS</h2>
+        <form autocomplete="off">
+            <input maxlength = "1" type="text" id="first-initial">
+            <input maxlength = "1" type="text" id="middle-initial">
+            <input maxlength = "1" type="text" id="last-initial">
+        </form>
+    </section>
+      <section id="highScore"><h2>HIGH SCORES</h2></section>
     </main>
-</body>
-<script src="js/script.js"></script>
+  </body>
+  <script src="js/script.js"></script>
 </html>
