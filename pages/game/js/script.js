@@ -24,13 +24,13 @@ let questionAnswer = updateQuestion()
 
 // start timer at top of screen
 // create var for storing time
-let timeOnClock = 100;
+let timeOnClock = 10;
 // give initial time before timer starts
 timeScoreH2.textContent = `${timeOnClock} seconds left`;
 // store time locally
-function updateDisplayScore() {
-  localStorage.setItem("timeScore", timeOnClock);
-  timeScoreH2.textContent = `${timeOnClock} second left`;
+function updateDisplayScore(timeLeft) {
+  localStorage.setItem("timeScore", timeLeft);
+  timeScoreH2.textContent = `${timeLeft} second left`;
 }
 
 // time tracker
@@ -38,20 +38,20 @@ let scoreTimer = setInterval(function () {
   if (timeOnClock > 1) {
     timeOnClock--;
     timeScoreH2.textContent = `${timeOnClock} seconds left`;
-    updateDisplayScore();
+    updateDisplayScore(timeOnClock);
   } else if (timeOnClock === 1) {
     timeOnClock--;
     timeScoreH2.textContent = `${timeOnClock} second left`;
-    updateDisplayScore();
+    updateDisplayScore(timeOnClock);
   } else {
     // stop timer at zero
     clearInterval(scoreTimer);
-    updateDisplayScore();
+    updateDisplayScore(timeOnClock);
     // TODO: create lose conditions
 
     ("you lose");
   }
-}, 1000);
+}, 100);
 
 // TODO: create first instance of question and answer
 // grab my vars and populate with question
@@ -73,7 +73,12 @@ answerUl.addEventListener("click", function (event) {
     timeOnClock += 3;
     updateDisplayScore();
     questionAnswer = updateQuestion()
-  } else {
+  }else if (timeOnClock <=0){
+    // TODO: move on to some sort of screen
+    updateDisplayScore('0')
+
+  } 
+  else {
     timeOnClock -= 5;
     updateDisplayScore();
     questionAnswer = updateQuestion()
@@ -86,7 +91,6 @@ function updateQuestion() {
   // choose random question
   let questionSet =
     questionList[Math.floor(Math.random() * questionList.length)];
-    console.log(questionSet.potAnswers[0])
   if (usedQuestions.length === questionList.length){
     // TODO: exit quiz
   }
