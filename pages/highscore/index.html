@@ -17,13 +17,14 @@
         <h2>PLEASE INPUT YOUR INITIALS</h2>
         <form autocomplete="off">
             <input placeholder="A" maxlength = "1" type="text" id="first-initial" onblur="getVal('first-initial')">
-            <input placeholder="A" maxlength = "1" type="text" id="middle-initial">
-            <input placeholder="A" maxlength = "1" type="text" id="last-initial">
+            <input placeholder="A" maxlength = "1" type="text" id="middle-initial" onblur="getVal('first-initial')">
+            <input placeholder="A" maxlength = "1" type="text" id="last-initial" onblur="getVal('first-initial')">
         </form>
-        <button>Submit</button>
+        <button onclick=logInitials()>Submit</button>
     </section>
       <section id="highScore"><h2>HIGH SCORES</h2></section>
+      <ul></ul>
     </main>
 </body>
-<script src="js/script.js"></script>
+<script type="module" src="js/script.js"></script>
 </html>

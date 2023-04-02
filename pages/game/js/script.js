@@ -106,5 +106,5 @@ function updateQuestion() {
   }
   return questionSet
 }
-
+export let finalScore = timeOnClock
 // TODO: randomly select question and anser to display next

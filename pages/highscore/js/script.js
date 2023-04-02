@@ -1,15 +1,29 @@
-function getVal(selector){
-    let form = document.forms[0]
-    console.log("form:", form)
-    // let input = form.querySelector(`input=name["${selector}"]`)
-    var input = document.getElementById('first-initial').value;
-    console.log("input:", input)
-    return input
+import { finalScore } from "../../game/js/script";
+
+inputArray = ["first-initial", "middle-initial", "last-initial"];
+
+finalScore = 45
+// pull value from input field
+function getVal(selector) {
+  var input = document.querySelector(`#${selector}`).value;
+  // console.log("input:", input)
+  return input;
 }
 
-// let firstInput = getVal('input[name="first-initial"]')
-// console.log("firstInput:", firstInput)
+// let submit button query all values in input fields
+function logInitials() {
+  let initials = [];
+  for (let i = 0; i < inputArray.length; i++) {
+    initials.push(getVal(inputArray[i]));
+  }
+  localStorage.setItem(`${initials}`, finalScore)
+  return initials;
+}
 
-// let input = document.querySelector('input[name="#first-initial"]')
+// display highscores
 
-// console.log("input:", input)
+let list = document.querySelector('ul')
+console.log("list:", list)
+
+localStorage.getItem('initials')
+
