@@ -1,0 +1,38 @@
+:root {
+    --primary-color : #FFC600;
+    --secondary-color: #FF0000;
+}
+
+* {
+    font-size: 16px;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+body {
+    background-color: salmon;
+}
+header{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;  
+}
+h1{
+    font-family: 'IBM Plex Sans', sans-serif;
+    /* font-family:  sans-serif; */
+    font-weight: 900;
+    font-size: 5rem;
+    background-image: linear-gradient(180deg ,var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+main {
+    display:flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+main section {
+    border: solid black 2px;
+    display: flex;
+
+}
