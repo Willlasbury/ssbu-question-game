@@ -1,1 +1,1 @@
-export let score = 10
+export let score = 100

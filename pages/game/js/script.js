@@ -50,51 +50,25 @@ let scoreTimer = setInterval(function () {
     updateDisplayScore(timeOnClock);
 
     // TODO: create lose conditions
-    window.location = "../highscore/index.html"
+    // window.location = "../highscore/index.html"
     ;
   }
-}, 100);
+}, 1000);
 
-// TODO: create first instance of question and answer
-// grab my vars and populate with question
-// questionH3.textContent = questionAnswer1.question;
-// aSpan.textContent = questionAnswer1.potAnsersers[0];
-// bSpan.textContent = questionAnswer1.potAnsersers[1];
-// cSpan.textContent = questionAnswer1.potAnsersers[2];
-// dSpan.textContent = questionAnswer1.potAnsersers[3];
-
-// score tracker
-localStorage.setItem("score", timeOnClock);
-
-// grab which answer the user clicked on
-answerUl.addEventListener("click", function (event) {
-  let chosenAnswer = event.target.outerText;
-  let correctAnswer = questionAnswer.correctAnswer;
-  console.log('correct answer:', correctAnswer)
-  if (chosenAnswer === correctAnswer) {
-    timeOnClock += 3;
-    updateDisplayScore();
-    questionAnswer = updateQuestion()
-  }else if (timeOnClock <=0){
-    // TODO: move on to some sort of screen
-    updateDisplayScore('0')
-
-  } 
-  else {
-    timeOnClock -= 5;
-    updateDisplayScore();
-    questionAnswer = updateQuestion()
-  }
-});
 
 
 // TODO: change question and answers to next option
 function updateQuestion() {
+  
+  console.log("usedQuestions:", usedQuestions)
+  
+  // let questionAnswer = updateQuestion()
   // choose random question
   let questionSet =
-    questionList[Math.floor(Math.random() * questionList.length)];
-  if (usedQuestions.length === questionList.length){
-    // TODO: exit quiz
+  questionList[Math.floor(Math.random() * questionList.length)];
+  usedQuestions.push(questionSet.question)
+  if (usedQuestions.length === 5){
+    // window.location = '../highscore/index.html'
   }
   else if (usedQuestions.includes(questionSet.question)) {
     return updateQuestion();
@@ -109,4 +83,29 @@ function updateQuestion() {
   return questionSet
 }
 export let finalScore = timeOnClock
-// TODO: randomly select question and anser to display next
+
+// grab which answer the user clicked on
+answerUl.addEventListener("click", function (event) {
+  let chosenAnswer = event.target.outerText;
+  let correctAnswer = questionAnswer.correctAnswer;
+  console.log('correct answer:', correctAnswer)
+  if (chosenAnswer === correctAnswer) {
+    timeOnClock += 3;
+    updateDisplayScore(timeOnClock);
+    questionAnswer = updateQuestion()
+  }else if (timeOnClock <=0){
+    // TODO: move on to some sort of screen
+    updateDisplayScore('0')
+
+  } 
+  else {
+    timeOnClock -= 5;
+    updateDisplayScore();
+    questionAnswer = updateQuestion()
+  }
+});
+
+
+
+// score tracker
+localStorage.setItem("score", timeOnClock);
