@@ -1,4 +1,5 @@
 import { questionList } from "./questions.js";
+import { score } from "./score.js";
 
 // grab variables from DOM for dynamic elements on page
 // timer
@@ -24,7 +25,7 @@ let questionAnswer = updateQuestion()
 
 // start timer at top of screen
 // create var for storing time
-let timeOnClock = 10;
+let timeOnClock = score;
 // give initial time before timer starts
 timeScoreH2.textContent = `${timeOnClock} seconds left`;
 // store time locally
@@ -47,9 +48,10 @@ let scoreTimer = setInterval(function () {
     // stop timer at zero
     clearInterval(scoreTimer);
     updateDisplayScore(timeOnClock);
-    // TODO: create lose conditions
 
-    ("you lose");
+    // TODO: create lose conditions
+    window.location = "../highscore/index.html"
+    ;
   }
 }, 100);
 

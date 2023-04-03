@@ -50,7 +50,7 @@ h2 {
 
 main {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-evenly;
     align-items: center;
 }
@@ -71,7 +71,7 @@ main {
     background-color: var(--secondary-background-color);
     border: solid var(--primary-background-color) 2px;
     border-radius: 2%;
-    height: 80vh;
+    height: 60vh;
     width: 65vw;
     display: flex;
     flex-flow: column nowrap;
@@ -115,4 +115,15 @@ button {
     border: none;
     box-shadow: inset 0px 0px 5px var(--light-shadow), 0px 0px 5px var(--dark-shadow);
     
+}
+a {
+    width: 25vw;
+    text-decoration: none;
+    text-align: center;
+    position: relative;
+    right: 40vh;
+    /* color: var(--primary-font-color) */
+    background-image: -webkit-linear-gradient(90deg, var(--primary-font-color), var(--secondary-font-color), var(--primary-font-color));
+    -webkit-background-clip: text;
+    color: transparent;
 }

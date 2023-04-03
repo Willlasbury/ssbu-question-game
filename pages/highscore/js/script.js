@@ -1,8 +1,9 @@
-import { finalScore } from "../../game/js/script";
+// import { score } from "../../game/js/score.js";
 
-inputArray = ["first-initial", "middle-initial", "last-initial"];
+let inputArray = ["first-initial", "middle-initial", "last-initial"];
 
-finalScore = 45
+let score = localStorage.getItem('timeScore')
+
 // pull value from input field
 function getVal(selector) {
   var input = document.querySelector(`#${selector}`).value;
@@ -16,7 +17,8 @@ function logInitials() {
   for (let i = 0; i < inputArray.length; i++) {
     initials.push(getVal(inputArray[i]));
   }
-  localStorage.setItem(`${initials}`, finalScore)
+  JSON.stringify(initials, score)
+  localStorage.setItem(`${initials}`, `${score}`)
   return initials;
 }
 
