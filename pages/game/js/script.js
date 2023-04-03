@@ -30,6 +30,7 @@ let timeOnClock = 100;
 timeScoreH2.textContent = `${timeOnClock} seconds left`;
 // store time locally
 function updateDisplayScore(timeLeft) {
+  console.log("timeLeft:", timeLeft)
   localStorage.setItem("timeScore", timeLeft);
   timeScoreH2.textContent = `${timeLeft} second left`;
 }
@@ -53,7 +54,7 @@ let scoreTimer = setInterval(function () {
     // window.location = "../highscore/index.html"
     ;
   }
-}, 1000);
+}, 10000);
 
 
 
@@ -84,7 +85,7 @@ function updateQuestion() {
     let correctAnswer = questionAnswer.correctAnswer;
     console.log('correct answer:', correctAnswer)
     if (chosenAnswer === correctAnswer) {
-      timeOnClock += 3;
+      // timeOnClock += 3;
       updateDisplayScore(timeOnClock);
       questionAnswer = updateQuestion()
     }else if (timeOnClock <=0){
@@ -94,7 +95,8 @@ function updateQuestion() {
     } 
     else {
       timeOnClock -= 5;
-      updateDisplayScore();
+      console.log("timeOnClock:", timeOnClock)
+      updateDisplayScore(timeOnClock);
       questionAnswer = updateQuestion()
     }
   });
