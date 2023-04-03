@@ -1,4 +1,4 @@
-export let questionList = [
+let questionList = [
   {
     question: "Who has fastest air acceleration in Super Smash Bro. Ultimate?",
     potAnswers: ["Jigglypuff", "Sonic", "Pichu", "Kirby"],
@@ -50,3 +50,5 @@ export let questionList = [
     correctAnswer: 'Incineroar',
   }
 ];
+
+localStorage.setItem('questionList', JSON.stringify(questionList))

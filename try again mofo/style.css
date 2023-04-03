@@ -62,7 +62,7 @@ li {
     --secondary-font-color: #FFC600;
     --primary-background-color: rgba(12, 12, 12, 0.931);
     --secondary-background-color: rgba(100, 100, 100, 0.218);
-    --tertiary-background-color: rgba(150, 150, 150, 0.218);
+    --tertiary-background-color: rgba(200, 200, 200, 0.546);
     --light-shadow: rgb(139, 139, 139);
     --dark-shadow: rgba(5, 5, 5, 0.295);
 }
@@ -129,7 +129,7 @@ h3 {
     font-size: 2rem;
     background-color: var(--tertiary-background-color);
     padding: 1vh 2vw;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 ul {
@@ -144,6 +144,18 @@ ul {
 
 }
 
+p {
+    font-size: 1.5rem;
+    font-weight: 900;
+    background-color: var(--tertiary-background-color);
+    border-radius: 5px;
+    padding: .5rem 1rem;
+}
+
+#timeLeft{
+    font-size: inherit;
+    font-weight: inherit;
+}
 
 li {
     /* border: solid black 2px; */
@@ -170,6 +182,7 @@ li {
 #answerD {
     grid-area: 3 / 2 / 4 / 3;
 }
+
 #highScore {
     background-color: var(--secondary-background-color);
     border: solid var(--primary-background-color) 2px;

@@ -1,5 +1,5 @@
-import { questionList } from "./questions.js";
-import { score } from "./score.js";
+// get questions
+questionList = JSON.parse(localStorage.getItem('questionList'))
 
 // grab variables from DOM for dynamic elements on page
 // timer
@@ -9,10 +9,10 @@ let timeScoreH2 = document.querySelector("#timeScore");
 let questionH3 = document.querySelector("#question");
 
 // answer spans
-let aSpan = document.querySelector("#aSpan");
-let bSpan = document.querySelector("#bSpan");
-let cSpan = document.querySelector("#cSpan");
-let dSpan = document.querySelector("#dSpan");
+let answerA = document.querySelector("#answerA");
+let answerB = document.querySelector("#answerB");
+let answerC = document.querySelector("#answerC");
+let answerD = document.querySelector("#answerD");
 
 // Grab answer list container
 let answerUl = document.querySelector("ul");
@@ -25,7 +25,7 @@ let questionAnswer = updateQuestion()
 
 // start timer at top of screen
 // create var for storing time
-let timeOnClock = score;
+let timeOnClock = 100;
 // give initial time before timer starts
 timeScoreH2.textContent = `${timeOnClock} seconds left`;
 // store time locally
@@ -57,53 +57,48 @@ let scoreTimer = setInterval(function () {
 
 
 
-// TODO: change question and answers to next option
-function updateQuestion() {
-  
-  console.log("usedQuestions:", usedQuestions)
-  
-  // let questionAnswer = updateQuestion()
+// change question and answers to next option
+function updateQuestion() { 
+  console.log("questionList.length:", questionList.length)
   // choose random question
   let questionSet =
   questionList[Math.floor(Math.random() * questionList.length)];
-  usedQuestions.push(questionSet.question)
-  if (usedQuestions.length === 5){
-    // window.location = '../highscore/index.html'
-  }
-  else if (usedQuestions.includes(questionSet.question)) {
+  if (usedQuestions.includes(questionSet.question)) {
     return updateQuestion();
   } else {
+    usedQuestions.push(questionSet.question)
     questionH3.textContent = questionSet.question;
-    aSpan.textContent = questionSet.potAnswers[0];
-    bSpan.textContent = questionSet.potAnswers[1];
-    cSpan.textContent = questionSet.potAnswers[2];
-    dSpan.textContent = questionSet.potAnswers[3];
+    answerA.textContent = questionSet.potAnswers[0];
+    answerB.textContent = questionSet.potAnswers[1];
+    answerC.textContent = questionSet.potAnswers[2];
+    answerD.textContent = questionSet.potAnswers[3];
     usedQuestions.push(questionSet.question);
   }
   return questionSet
 }
-export let finalScore = timeOnClock
 
 // grab which answer the user clicked on
-answerUl.addEventListener("click", function (event) {
-  let chosenAnswer = event.target.outerText;
-  let correctAnswer = questionAnswer.correctAnswer;
-  console.log('correct answer:', correctAnswer)
-  if (chosenAnswer === correctAnswer) {
-    timeOnClock += 3;
-    updateDisplayScore(timeOnClock);
-    questionAnswer = updateQuestion()
-  }else if (timeOnClock <=0){
-    // TODO: move on to some sort of screen
-    updateDisplayScore('0')
 
-  } 
-  else {
-    timeOnClock -= 5;
-    updateDisplayScore();
-    questionAnswer = updateQuestion()
-  }
-});
+  answerUl.addEventListener("click", function (event) {
+    let chosenAnswer = event.target.outerText;
+    let correctAnswer = questionAnswer.correctAnswer;
+    console.log('correct answer:', correctAnswer)
+    if (chosenAnswer === correctAnswer) {
+      timeOnClock += 3;
+      updateDisplayScore(timeOnClock);
+      questionAnswer = updateQuestion()
+    }else if (timeOnClock <=0){
+      // TODO: move on to some sort of screen
+      updateDisplayScore('0')
+      
+    } 
+    else {
+      timeOnClock -= 5;
+      updateDisplayScore();
+      questionAnswer = updateQuestion()
+    }
+  });
+
 
 
 

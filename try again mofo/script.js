@@ -1,8 +1,59 @@
-import { questionList } from "./questions.js";
+const questionList = [
+  [
+    "Who has fastest air acceleration in Super Smash Bro. Ultimate?",
+    ["Jigglypuff", "Sonic", "Pichu", "Kirby"],
+    "Jigglypuff",
+  ],
+  [
+   "Who has highest short hop in Super Smash Bro. Ultimate?",
+    ["Luigi", "Fox", "Min Min", "Greninja"],
+    'Greninja',
+  ],
+  [
+   "Who has the most moves in Super Smash Bro. Ultimate?",
+    ["Pokemon Trainer", "Hero", "Kazuya", "Pyra and Mythra"],
+    'Pokemon Trainer',
+  ],
+  [
+   "Who is the lightest character in Super Smash Bro. Ultimate?",
+    [ "Squirtle", "Jigglypuff", "Pichu", "Olimar"],
+    'Pichu',
+  ],
+  [
+   "Who is the heaviest character in Super Smash Bro. Ultimate?",
+    ["King K. Rool", "Bowser", "Donkey Kong", "Ridley"],
+    'Bowser',
+  ],
+  [
+   "Who has the longest grab in Super Smash Bro. Ultimate?",
+    ["Samus", "Min Min", "Olimar", "Young Link"],
+    'Samus',
+  ],
+  [
+   "Who's air dodge comes out the fastest in Super Smash Bro. Ultimate?",
+    ["Fox", "Bayonetta", "Sheik", "Diddy Kong"],
+    'Bayonetta',
+  ],
+  [
+   "Who has the fastest walk speed in Super Smash Bro. Ultimate?",
+    ["Lucina", "Kirby", "Pikachu", "Peach"],
+    'Lucina',
+  ],
+  [
+   "Who has the fastest air speed in Super Smash Bro. Ultimate?",
+    ["Yoshi", "Mewtwo", "Captin Falcon", "Inkling"],
+    'Yoshi',
+  ],
+  [
+   "Who has the slowest run speed in Super Smash Bro. Ultimate?",
+    ["Incineroar", "Simon", "Ganandorf", "Robin"],
+    'Incineroar',
+  ]
+];
 
 // grab variables from DOM for dynamic elements on page
 // timer
-let timeSpa = document.querySelector("#timeLeft");
+let timeSpan = document.querySelector("#timeLeft");
 
 // question
 let questionH3 = document.querySelector("#question");
@@ -20,82 +71,83 @@ let startBtn = document.querySelector("#startBtn");
 // save which question was chosen to prevent repeats
 let usedQuestions = [];
 
-let questionAnswer = updateQuestion();
+// let questionAnswer = updateQuestion();
 
 // start timer at top of screen
 // create var for storing time
 let timeOnClock = 100;
 
 // give initial time before timer starts
-// timeScoreH2.textContent = `${timeOnClock} seconds left`;
+// timeScoreH2.textContent = `$[timeOnClock} seconds left`;
 
 // update time locally
 function updateDisplayScore(timeLeft) {
   localStorage.setItem("score", timeLeft);
-  timeSpan.textContent = `${timeLeft} second left`;
+  timeSpan.textContent = timeLeft;
 }
 
 // time tracker
-function startTime() {
+function startTime(quizStart) {
+  if (quizStart){
   let scoreTimer = setInterval(function () {
     if (timeOnClock > 1) {
       timeOnClock--;
-      timeScoreH2.textContent = `${timeOnClock} seconds left`;
       updateDisplayScore(timeOnClock);
     } else if (timeOnClock === 1) {
       timeOnClock--;
-      timeScoreH2.textContent = `${timeOnClock} second left`;
       updateDisplayScore(timeOnClock);
     } else {
       // stop timer at zero
       clearInterval(scoreTimer);
       updateDisplayScore(timeOnClock);
+      quizStart = false
 
       // TODO: create lose conditions
       // window.location = "../highscore/index.html"
     }
-  }, 1000);
+  }, 1000);}
 }
 
-// TODO: change question and answers to next option
-function updateQuestion() {
-  // let questionAnswer = updateQuestion()
-  // choose random question
-  let questionSet =
-    questionList[Math.floor(Math.random() * questionList.length)];
-  // usedQuestions.push(questionSet.question);
-  if (usedQuestions.length === 5) {
-    // window.location = '../highscore/index.html'
-  } else if (usedQuestions.includes(questionSet.question)) {
-    return updateQuestion();
+// change question and answers to next option
+// choose random question
+// console.log("questionList[0]:", questionList[0][1].length)
+function chooseQuestion(){
+  console.log("questionList.length:", questionList.length)
+  let questionSet = questionList[Math.floor(Math.random() * questionList.length)];
+  console.log("questionSet:", questionSet)
+  usedQuestions.push(questionSet.question)
+}
+
+function updateQuestion(questionSet) {
+  if (usedQuestions.includes(questionSet.question)) {
+    // return updateQuestion();
   } else {
     questionH3.textContent = questionSet.question;
-    answerA.textContent = questionSet.potAnswers[0];
-    answerB.textContent = questionSet.potAnswers[1];
-    answerC.textContent = questionSet.potAnswers[2];
-    answerD.textContent = questionSet.potAnswers[3];
+    aSpan.textContent = questionSet.potAnswers[0];
+    bSpan.textContent = questionSet.potAnswers[1];
+    cSpan.textContent = questionSet.potAnswers[2];
+    dSpan.textContent = questionSet.potAnswers[3];
     usedQuestions.push(questionSet.question);
   }
-  return questionSet;
-}
+  }
+
 
 // grab which answer the user clicked on
-function choseAnswer() {
+function chooseAnswer(questionSet) {
   answerUl.addEventListener("click", function (event) {
     let chosenAnswer = event.target.outerText;
-    let correctAnswer = questionAnswer.correctAnswer;
-    console.log("correct answer:", correctAnswer);
+    let correctAnswer = questionSet.correctAnswer;
     if (chosenAnswer === correctAnswer) {
       timeOnClock += 3;
       updateDisplayScore(timeOnClock);
-      questionAnswer = updateQuestion();
+      questionSet = updateQuestion();
     } else if (timeOnClock <= 0) {
       // TODO: move on to some sort of screen
       updateDisplayScore("0");
     } else {
       timeOnClock -= 5;
       updateDisplayScore();
-      questionAnswer = updateQuestion();
+      questionSet = updateQuestion();
     }
   });
 }
@@ -103,32 +155,24 @@ function choseAnswer() {
 // score tracker
 localStorage.setItem("score", timeOnClock);
 
-function beginQuiz() {
-  // remove the start button
-  startBtn.style.display = 'none';
+// function beginQuiz() {
+//   // remove the start button
+//   startBtn.style.display = 'none';
+  let quizStart = true
 
-  // populate main tag with quiz and timer
-  let quiz = document.querySelector('#quiz')
-  quiz.style.cssText = 'display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;'
+//   // populate main tag with quiz and timer
+//   let quiz = document.querySelector('#quiz')
+//   quiz.style.cssText = 'display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;'
 
   
-  updateQuestion()
-
-  // startTime()
-
-
+  let numQuestionsAsked = 0
+  chooseAnswer(updateQuestion())
+  startTime(quizStart)
 
 
 
+// }
 
+// console.log("test");
 
-
-
-}
-
-function test(){
-  console.log("test")
-}
-console.log("test");
-
-startBtn.addEventListener('click', function(){beginQuiz()})
+// startBtn.addEventListener('click', function(){beginQuiz()})
