@@ -2,16 +2,16 @@ import { questionList } from "./questions.js";
 
 // grab variables from DOM for dynamic elements on page
 // timer
-let timeScoreH2 = document.querySelector("#timeScore");
+let timeSpa = document.querySelector("#timeLeft");
 
 // question
 let questionH3 = document.querySelector("#question");
 
 // answer spans
-let aSpan = document.querySelector("#aSpan");
-let bSpan = document.querySelector("#bSpan");
-let cSpan = document.querySelector("#cSpan");
-let dSpan = document.querySelector("#dSpan");
+let answerA = document.querySelector("#answerA");
+let answerB = document.querySelector("#answerB");
+let answerC = document.querySelector("#answerC");
+let answerD = document.querySelector("#answerD");
 
 // Grab answer list container
 let answerUl = document.querySelector("ul");
@@ -29,10 +29,10 @@ let timeOnClock = 100;
 // give initial time before timer starts
 // timeScoreH2.textContent = `${timeOnClock} seconds left`;
 
-// store time locally
+// update time locally
 function updateDisplayScore(timeLeft) {
-  localStorage.setItem("timeScore", timeLeft);
-  timeScoreH2.textContent = `${timeLeft} second left`;
+  localStorage.setItem("score", timeLeft);
+  timeSpan.textContent = `${timeLeft} second left`;
 }
 
 // time tracker
@@ -63,17 +63,17 @@ function updateQuestion() {
   // choose random question
   let questionSet =
     questionList[Math.floor(Math.random() * questionList.length)];
-  usedQuestions.push(questionSet.question);
+  // usedQuestions.push(questionSet.question);
   if (usedQuestions.length === 5) {
     // window.location = '../highscore/index.html'
   } else if (usedQuestions.includes(questionSet.question)) {
     return updateQuestion();
   } else {
     questionH3.textContent = questionSet.question;
-    aSpan.textContent = questionSet.potAnswers[0];
-    bSpan.textContent = questionSet.potAnswers[1];
-    cSpan.textContent = questionSet.potAnswers[2];
-    dSpan.textContent = questionSet.potAnswers[3];
+    answerA.textContent = questionSet.potAnswers[0];
+    answerB.textContent = questionSet.potAnswers[1];
+    answerC.textContent = questionSet.potAnswers[2];
+    answerD.textContent = questionSet.potAnswers[3];
     usedQuestions.push(questionSet.question);
   }
   return questionSet;
@@ -104,7 +104,31 @@ function choseAnswer() {
 localStorage.setItem("score", timeOnClock);
 
 function beginQuiz() {
-  startBtn.remove();
+  // remove the start button
+  startBtn.style.display = 'none';
+
+  // populate main tag with quiz and timer
+  let quiz = document.querySelector('#quiz')
+  quiz.style.cssText = 'display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;'
+
+  
+  updateQuestion()
+
+  // startTime()
+
+
+
+
+
+
+
+
+
 }
 
+function test(){
+  console.log("test")
+}
 console.log("test");
+
+startBtn.addEventListener('click', function(){beginQuiz()})
