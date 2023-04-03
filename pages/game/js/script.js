@@ -19,7 +19,7 @@ let answerUl = document.querySelector("ul");
 
 // save which question was chosen to prevent repeats
 let usedQuestions = [];
-
+let questionsAsked = 0
 let questionAnswer = updateQuestion()
 
 
@@ -49,9 +49,7 @@ let scoreTimer = setInterval(function () {
     // stop timer at zero
     clearInterval(scoreTimer);
     updateDisplayScore(timeOnClock);
-
-    // TODO: create lose conditions
-    // window.location = "../highscore/index.html"
+    window.location = '../../pages/highscore/index.html'
     ;
   }
 }, 10000);
@@ -60,10 +58,14 @@ let scoreTimer = setInterval(function () {
 
 // change question and answers to next option
 function updateQuestion() { 
-  console.log("questionList.length:", questionList.length)
+  questionsAsked++
   // choose random question
   let questionSet =
   questionList[Math.floor(Math.random() * questionList.length)];
+  if (questionsAsked === 10){
+    questionAsked = 0
+    window.location = "../highscore/index.html"
+  }
   if (usedQuestions.includes(questionSet.question)) {
     return updateQuestion();
   } else {
@@ -91,18 +93,22 @@ function updateQuestion() {
     }else if (timeOnClock <=0){
       // TODO: move on to some sort of screen
       updateDisplayScore('0')
+      console.log("test")
+      // window.location = '../../highscore/index.html'
       
     } 
     else {
       timeOnClock -= 5;
-      console.log("timeOnClock:", timeOnClock)
       updateDisplayScore(timeOnClock);
       questionAnswer = updateQuestion()
     }
   });
 
 
+// TODO: move to highscores page
 
 
 // score tracker
 localStorage.setItem("score", timeOnClock);
+
+
