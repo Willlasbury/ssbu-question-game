@@ -1,5 +1,13 @@
 // get score list
-let highScores = localStorage.getItem('')
+let highScoreUl = document.querySelector("#highScore")
+function getScores() {
+  let highScores = localStorage.getItem('previousScore').split(",")
+  let userInit = highScores.slice(0,3).join("").toUpperCase()
+  let userScore = highScores[3]
+  let newLi = document.createElement("li")
+  newLi.textContent = `${userInit}:  ${userScore}`  
+  highScoreUl.appendChild(newLi)
+}
 
 let inputArray = ["first-initial", "middle-initial", "last-initial"];
 
@@ -19,14 +27,15 @@ function logInitials() {
     initials.push(getVal(inputArray[i]));
   }
   JSON.stringify(initials, score)
-  localStorage.setItem(`${initials}`, `${score}`)
+  localStorage.setItem('previousScore',`${initials},${score}`)
   return initials;
 }
 
 // display highscores
 
 let list = document.querySelector('ul')
-console.log("list:", list)
 
 localStorage.getItem('initials')
+
+getScores()
 
