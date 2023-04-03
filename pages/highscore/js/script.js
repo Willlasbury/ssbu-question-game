@@ -1,4 +1,5 @@
-// import { score } from "../../game/js/score.js";
+// get score list
+let highScores = localStorage.getItem('')
 
 let inputArray = ["first-initial", "middle-initial", "last-initial"];
 

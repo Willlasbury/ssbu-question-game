@@ -2,7 +2,6 @@
 questionList = JSON.parse(localStorage.getItem('questionList'))
 
 // grab variables from DOM for dynamic elements on page
-// timer
 let timeScoreH2 = document.querySelector("#timeScore");
 
 // question
@@ -30,7 +29,7 @@ let timeOnClock = 100;
 timeScoreH2.textContent = `${timeOnClock} seconds left`;
 // store time locally
 function updateDisplayScore(timeLeft) {
-  console.log("timeLeft:", timeLeft)
+  // console.log("timeLeft:", timeLeft)
   localStorage.setItem("timeScore", timeLeft);
   timeScoreH2.textContent = `${timeLeft} second left`;
 }
@@ -52,7 +51,7 @@ let scoreTimer = setInterval(function () {
     window.location = '../../pages/highscore/index.html'
     ;
   }
-}, 10000);
+}, 100);
 
 
 
@@ -62,6 +61,7 @@ function updateQuestion() {
   // choose random question
   let questionSet =
   questionList[Math.floor(Math.random() * questionList.length)];
+  console.log("questionSet.question:", questionSet.question)
   if (questionsAsked === 10){
     questionAsked = 0
     window.location = "../highscore/index.html"
@@ -85,16 +85,13 @@ function updateQuestion() {
   answerUl.addEventListener("click", function (event) {
     let chosenAnswer = event.target.outerText;
     let correctAnswer = questionAnswer.correctAnswer;
-    console.log('correct answer:', correctAnswer)
+    // console.log('correct answer:', correctAnswer)
     if (chosenAnswer === correctAnswer) {
       // timeOnClock += 3;
       updateDisplayScore(timeOnClock);
       questionAnswer = updateQuestion()
     }else if (timeOnClock <=0){
-      // TODO: move on to some sort of screen
-      updateDisplayScore('0')
-      console.log("test")
-      // window.location = '../../highscore/index.html'
+      window.location = '../../highscore/index.html'
       
     } 
     else {
@@ -103,12 +100,4 @@ function updateQuestion() {
       questionAnswer = updateQuestion()
     }
   });
-
-
-// TODO: move to highscores page
-
-
-// score tracker
-localStorage.setItem("score", timeOnClock);
-
 

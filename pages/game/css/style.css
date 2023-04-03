@@ -1,64 +1,3 @@
-/* * {
-    font-size: 16px;
-    font-family: 'Poppins', sans-serif;
-}
-
-body {
-    background-color: salmon;
-}
-
-header{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;  
-}
-h1{
-    font-size: 5rem;
-    font-family: 'Poppins', sans-serif
-}
-
-h2{
-    font-size: 3rem;
-}
-h3{
-    font-size: 2rem;
-}
-main {
-    display:flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-} */
-
-/* 
-ul{
-    border: solid black 2px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-li {
-    border: solid black 2px;
-    height: 10vh;
-    width: 15vh;
-    font-size: 3rem;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-#answerA, #answerD {
-    display: flex;
-    flex-basis: 100%;
-    
-}
-#answerB, #answerC {
-    display: flex;
-    flex-basis: 45%;
-} */
 :root {
     --primary-font-color: #FF0000;
     --secondary-font-color: #FFC600;
@@ -113,8 +52,10 @@ h3 {
     text-align: center;
     font-size: 2rem;
     background-color: var(--tertiary-background-color);
+    border: solid black 2px;
     padding: 1vh 2vw;
     border-radius: 10px;
+    margin-top: 2rem;
 }
 
 main {
@@ -129,6 +70,7 @@ ul {
     width: 80vw;
     list-style: none;
     display: grid;
+    margin-top:2rem;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     grid-column-gap: 7px;
@@ -150,7 +92,7 @@ p {
 }
 
 li {
-    /* border: solid black 2px; */
+    border: solid black 2px;
     /* background-color: #FF0000; */
     background-color: var(--tertiary-background-color);
     border-radius: 10px;
@@ -158,6 +100,10 @@ li {
     font-weight: 900;
     text-align: center;
     padding: 2rem;
+}
+
+li:hover{
+    box-shadow: inset 0 0 10px var(--light-shadow), 0 0 10px var(--dark-shadow);
 }
 
 #answerA {
