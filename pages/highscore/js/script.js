@@ -2,16 +2,25 @@
 let highScoreUl = document.querySelector("#highScore");
 
 function getUserScore() {
+  console.log("test")
   let highScores = localStorage.getItem("previousScores").split(",");
-  let userInit = highScores.slice(0, 3).join("").toUpperCase();
-  let userScore = highScores[3];
-  displayScores(userInit, userScore);
+  // let userInit = highScores.slice(0, 3).join("").toUpperCase();
+  // let userScore = highScores[3];
+  console.log("highScores:", highScores)
+  displayScores(highScores);
 }
 
-function displayScores(user, score) {
+function displayScores(array) {
   let newLi = document.createElement("li");
-  newLi.textContent = `${user}:  ${score}`;
-  highScoreUl.appendChild(newLi);
+  for (let i = 0; i < array.length; i=i+4) {
+    console.log("test")
+    let group = array.slice(i,i+4)
+    let userInit = group.slice(0, 3).join("").toUpperCase();
+    let userScore = highScores[3];
+    newLi.textContent = `${userInit}: ${userScore}`;
+    highScoreUl.appendChild(newLi);
+    console.log("group:", group)
+  }
 }
 
 let inputArray = ["first-initial", "middle-initial", "last-initial"];
@@ -36,21 +45,11 @@ function logInitials() {
     JSON.stringify(initials, score);
     localStorage.setItem("previousScores", `${initials},${score}`);
   } else {
-    console.log("test");
-    getUserScore();
     let previousScores = localStorage.getItem("previousScores").split(",");
     highScores = previousScores.concat(initials, scores);
     console.log("highscores2:", highScores);
     JSON.stringify(highScores);
-    // localStorage.setItem('previousScores', highScores)
     localStorage.setItem("previousScores", highScores);
   }
-  // return initials;
+  getUserScore()
 }
-
-// display highscores
-
-let list = document.querySelector("ul");
-
-// logInitials()
-// console.log("initials:", initials)
