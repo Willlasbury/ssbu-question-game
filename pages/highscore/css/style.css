@@ -37,13 +37,13 @@ h1 {
 
 h2 {
     font-family: 'IBM Plex Sans', sans-serif;
-    font-family:  sans-serif;
+    font-family: sans-serif;
     font-weight: 900;
-    font-size: 1.9rem;
+    font-size: 1.5rem;
     padding: 1rem;
     margin: 1rem;
     /* height: 5vh; */
-    background-image: -webkit-linear-gradient(90deg, var(--primary-font-color), var(--primary-font-color), var(--secondary-font-color), var(--primary-font-color), var(--primary-font-color));
+    background-image: -webkit-linear-gradient(90deg, var(--primary-font-color), var(--primary-font-color), var(--primary-font-color), var(--secondary-font-color), var(--primary-font-color), var(--primary-font-color), var(--primary-font-color));
     -webkit-background-clip: text;
     color: transparent;
 }
@@ -68,20 +68,23 @@ main {
     align-items: center;
     /* add overflow incase I want to display more scores or
     incase of screen shrinkage */
-    overflow-y: auto;
+    /* overflow-y: auto; */
 }
+
 
 li {
     font-family: 'IBM Plex Sans', sans-serif;
-    font-family:  sans-serif;
+    font-family: sans-serif;
     font-weight: 900;
     font-size: 1.9rem;
     padding: 1rem;
     margin: 1rem;
-    /* height: 5vh; */
     background-image: -webkit-linear-gradient(90deg, var(--primary-font-color), var(--primary-font-color), var(--secondary-font-color), var(--primary-font-color), var(--primary-font-color));
     -webkit-background-clip: text;
     color: transparent;
+    display: flex;
+    justify-content: center;
+
 }
 
 #logInitials {
@@ -131,8 +134,9 @@ button {
     /* border: black solid 1px; */
     border: none;
     box-shadow: inset 0px 0px 5px var(--light-shadow), 0px 0px 5px var(--dark-shadow);
-    
+
 }
+
 a {
     width: 25vw;
     text-decoration: none;
