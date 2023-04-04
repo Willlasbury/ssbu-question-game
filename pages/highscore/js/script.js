@@ -1,22 +1,26 @@
 // get score list
 let highScoreUl = document.querySelector("#highScore");
 
+// search local memory for any previous scores
 function getUserScore() {
   let highScores = localStorage.getItem("previousScores").split(",");
-  // let userInit = highScores.slice(0, 3).join("").toUpperCase();
-  // let userScore = highScores[3];
-  displayScores(highScores);
+  displayScores(findScoresToDisplay(highScores));
 }
 
-let scoresToDisplay = [];
-let checkArray = [0, 0, 0, 0, 0];
+// takes an array and sorts out the top five scores
 function findScoresToDisplay(array) {
-  for (let i = 0; i < array.length; i = i + 4) {
+  let scoresToDisplay = [];
+  let checkArray = [0, 0, 0, 0, 0];
 
+  // sort the arrays by every four entries (3 leters for the initials
+  // and 1 number for the score)
+  for (let i = 0; i < array.length; i = i + 4) {
     let group = array.slice(i, i + 4);
     let checkScore = group[3];
     Number(checkScore);
 
+    // check the value of a group and see if it will be added to the display
+    // scores
     if (checkScore >= checkArray[0]) {
       checkArray[4] = group[3];
       checkArray.sort().reverse().slice(0, 6);
@@ -27,20 +31,17 @@ function findScoresToDisplay(array) {
           return a[3] - b[3];
         })
         .reverse();
-      // console.log("scoreToDisplay:", scoresToDisplay)
-      // scoresToDisplay.sort();
-      // console.log("checkArray:", checkArray)
       scoresToDisplay = scoresToDisplay.slice(0, 5);
     }
 
     flatScores = scoresToDisplay.flat();
-    console.log("flatScores:", flatScores)
+    console.log("flatScores:", flatScores);
   }
   return flatScores;
 }
 
+// displays scores to the high scores section
 function displayScores(array) {
-  console.log("array:", array)
   for (let i = 0; i < array.length; i = i + 4) {
     let anotherGroup = array.slice(i, i + 4);
     let userInit = anotherGroup.slice(0, 3).join("").toUpperCase();
@@ -55,13 +56,13 @@ let inputArray = ["first-initial", "middle-initial", "last-initial"];
 
 let score = localStorage.getItem("timeScore");
 
-// pull value from input field
+// pull value from input field to get initials
 function getVal(selector) {
   var input = document.querySelector(`#${selector}`).value;
   return input;
 }
 
-// let submit button query all values in input fields
+// log the initials and the score into local memory
 function logInitials() {
   let scores = localStorage.getItem("timeScore");
   let initials = [];
@@ -73,12 +74,14 @@ function logInitials() {
     localStorage.setItem("previousScores", `${initials},${score}`);
   } else {
     let previousScores = localStorage.getItem("previousScores").split(",");
-    highScores = previousScores.concat(initials, scores);
+    let highScores = previousScores.concat(initials, scores);
     JSON.stringify(highScores);
     localStorage.setItem("previousScores", highScores);
   }
   getUserScore();
 }
 
-let highScores = localStorage.getItem("previousScores").split(",");
-displayScores(findScoresToDisplay(highScores));
+// immediatly display any score/s in memory
+getUserScore();
+// let highScores = localStorage.getItem("previousScores").split(",");
+// displayScores(findScoresToDisplay(highScores));
