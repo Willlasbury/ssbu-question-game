@@ -12,12 +12,16 @@ let answerD = document.querySelector("#answerD");
 
 // save which question was chosen to prevent repeats
 let usedQuestions = [];
+
 let questionsAsked = 0;
+
 let questionAnswer = updateQuestion();
 
 // start timer at top of screen
 // create var for storing time
+
 let timeOnClock = 99;
+
 
 // give initial time before timer starts
 timeScoreH2.textContent = `${timeOnClock} seconds left`;
@@ -30,6 +34,7 @@ function updateDisplayScore(timeLeft) {
 }
 
 // time tracker
+
 let scoreTimer = setInterval(function () {
   if (timeOnClock > 1) {
     timeOnClock--;
@@ -47,18 +52,22 @@ let scoreTimer = setInterval(function () {
   }
 }, 1000);
 
+
 // change question and answers to next option
+
 function updateQuestion() {
   console.log("questionsAsked:", questionsAsked);
   // choose random question
   let questionSet =
     questionList[Math.floor(Math.random() * questionList.length)];
+
   console.log("questionSet.question:", questionSet.question);
   if (questionsAsked === 5) {
     questionAsked = 0;
     window.location = "../highscore/index.html";
   }
   if (usedQuestions.includes(questionSet.question)) {
+
     return updateQuestion();
   } else {
     questionsAsked++;
@@ -72,6 +81,7 @@ function updateQuestion() {
   }
   return questionSet;
 }
+
 
 // grab which answer the user clicked on
 answerUl.addEventListener("click", function (event) {
@@ -90,3 +100,4 @@ answerUl.addEventListener("click", function (event) {
     questionAnswer = updateQuestion();
   }
 });
+

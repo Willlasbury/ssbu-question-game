@@ -1,3 +1,4 @@
+
 // get score list
 let highScoreUl = document.querySelector("#highScore");
 
@@ -59,6 +60,7 @@ let score = localStorage.getItem("timeScore");
 // pull value from input field to get initials
 function getVal(selector) {
   var input = document.querySelector(`#${selector}`).value;
+
   return input;
 }
 
