@@ -1,20 +1,14 @@
-// get questions
+// get questions from local memory
 questionList = JSON.parse(localStorage.getItem("questionList"));
 
 // grab variables from DOM for dynamic elements on page
 let timeScoreH2 = document.querySelector("#timeScore");
-
-// question
 let questionH3 = document.querySelector("#question");
-
-// answer spans
+let answerUl = document.querySelector("ul");
 let answerA = document.querySelector("#answerA");
 let answerB = document.querySelector("#answerB");
 let answerC = document.querySelector("#answerC");
 let answerD = document.querySelector("#answerD");
-
-// Grab answer list container
-let answerUl = document.querySelector("ul");
 
 // save which question was chosen to prevent repeats
 let usedQuestions = [];
@@ -24,8 +18,10 @@ let questionAnswer = updateQuestion();
 // start timer at top of screen
 // create var for storing time
 let timeOnClock = 99;
+
 // give initial time before timer starts
 timeScoreH2.textContent = `${timeOnClock} seconds left`;
+
 // store time locally
 function updateDisplayScore(timeLeft) {
   // console.log("timeLeft:", timeLeft)
@@ -78,7 +74,6 @@ function updateQuestion() {
 }
 
 // grab which answer the user clicked on
-
 answerUl.addEventListener("click", function (event) {
   let chosenAnswer = event.target.outerText;
   let correctAnswer = questionAnswer.correctAnswer;
