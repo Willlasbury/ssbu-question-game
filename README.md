@@ -19,3 +19,11 @@ on the highscores page.
 
 https://willlasbury.github.io/ssbu-question-game/
 
+## Welcome Page
+![SSBU quiz welcome page](./images/quiz-welcome-page.png)
+
+## Quiz Page
+![SSBU quiz page](./images/quiz-game.png)
+
+## High Scores Page
+![SSBU high scores page](./images/quiz-highscore.png)
