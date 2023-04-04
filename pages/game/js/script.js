@@ -1,5 +1,5 @@
 // get questions
-questionList = JSON.parse(localStorage.getItem('questionList'))
+questionList = JSON.parse(localStorage.getItem("questionList"));
 
 // grab variables from DOM for dynamic elements on page
 let timeScoreH2 = document.querySelector("#timeScore");
@@ -18,13 +18,12 @@ let answerUl = document.querySelector("ul");
 
 // save which question was chosen to prevent repeats
 let usedQuestions = [];
-let questionsAsked = 0
-let questionAnswer = updateQuestion()
-
+let questionsAsked = 0;
+let questionAnswer = updateQuestion();
 
 // start timer at top of screen
 // create var for storing time
-let timeOnClock = 100;
+let timeOnClock = 99;
 // give initial time before timer starts
 timeScoreH2.textContent = `${timeOnClock} seconds left`;
 // store time locally
@@ -48,28 +47,26 @@ let scoreTimer = setInterval(function () {
     // stop timer at zero
     clearInterval(scoreTimer);
     updateDisplayScore(timeOnClock);
-    window.location = '../../pages/highscore/index.html'
-    ;
+    window.location = "../highscore/index.html";
   }
-}, 100);
-
-
+}, 1000);
 
 // change question and answers to next option
-function updateQuestion() { 
-  questionsAsked++
+function updateQuestion() {
+  console.log("questionsAsked:", questionsAsked);
   // choose random question
   let questionSet =
-  questionList[Math.floor(Math.random() * questionList.length)];
-  console.log("questionSet.question:", questionSet.question)
-  if (questionsAsked === 10){
-    questionAsked = 0
-    window.location = "../highscore/index.html"
+    questionList[Math.floor(Math.random() * questionList.length)];
+  console.log("questionSet.question:", questionSet.question);
+  if (questionsAsked === 5) {
+    questionAsked = 0;
+    window.location = "../highscore/index.html";
   }
   if (usedQuestions.includes(questionSet.question)) {
     return updateQuestion();
   } else {
-    usedQuestions.push(questionSet.question)
+    questionsAsked++;
+    usedQuestions.push(questionSet.question);
     questionH3.textContent = questionSet.question;
     answerA.textContent = questionSet.potAnswers[0];
     answerB.textContent = questionSet.potAnswers[1];
@@ -77,27 +74,24 @@ function updateQuestion() {
     answerD.textContent = questionSet.potAnswers[3];
     usedQuestions.push(questionSet.question);
   }
-  return questionSet
+  return questionSet;
 }
 
 // grab which answer the user clicked on
 
-  answerUl.addEventListener("click", function (event) {
-    let chosenAnswer = event.target.outerText;
-    let correctAnswer = questionAnswer.correctAnswer;
-    // console.log('correct answer:', correctAnswer)
-    if (chosenAnswer === correctAnswer) {
-      // timeOnClock += 3;
-      updateDisplayScore(timeOnClock);
-      questionAnswer = updateQuestion()
-    }else if (timeOnClock <=0){
-      window.location = '../../highscore/index.html'
-      
-    } 
-    else {
-      timeOnClock -= 5;
-      updateDisplayScore(timeOnClock);
-      questionAnswer = updateQuestion()
-    }
-  });
-
+answerUl.addEventListener("click", function (event) {
+  let chosenAnswer = event.target.outerText;
+  let correctAnswer = questionAnswer.correctAnswer;
+  // console.log('correct answer:', correctAnswer)
+  if (chosenAnswer === correctAnswer) {
+    // timeOnClock += 3;
+    updateDisplayScore(timeOnClock);
+    questionAnswer = updateQuestion();
+  } else if (timeOnClock <= 0) {
+    window.location = "../highscore/index.html";
+  } else {
+    timeOnClock -= 5;
+    updateDisplayScore(timeOnClock);
+    questionAnswer = updateQuestion();
+  }
+});
