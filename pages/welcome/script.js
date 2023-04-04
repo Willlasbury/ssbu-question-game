@@ -1,5 +1,6 @@
-startBtn = document.querySelector('button')
+startBtn = document.querySelector('#startBtn')
 
-addEventListener('click', function() {
-    this.window.location = 'pages/game/index.html'
+startBtn.addEventListener('click', function() {
+    console.log("test")
+    window.location = 'pages/game/index.html'
 })
