@@ -37,20 +37,20 @@ h1 {
 
 h2 {
     font-family: 'IBM Plex Sans', sans-serif;
-    font-family:  sans-serif;
+    font-family: sans-serif;
     font-weight: 900;
-    font-size: 1.9rem;
+    font-size: 1.5rem;
     padding: 1rem;
     margin: 1rem;
     /* height: 5vh; */
-    background-image: -webkit-linear-gradient(90deg, var(--primary-font-color), var(--primary-font-color), var(--secondary-font-color), var(--primary-font-color), var(--primary-font-color));
+    background-image: -webkit-linear-gradient(90deg, var(--primary-font-color), var(--primary-font-color), var(--primary-font-color), var(--secondary-font-color), var(--primary-font-color), var(--primary-font-color), var(--primary-font-color));
     -webkit-background-clip: text;
     color: transparent;
 }
 
 main {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-evenly;
     align-items: center;
 }
@@ -66,12 +66,32 @@ main {
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
+    /* add overflow incase I want to display more scores or
+    incase of screen shrinkage */
+    /* overflow-y: auto; */
 }
+
+
+li {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: sans-serif;
+    font-weight: 900;
+    font-size: 1.9rem;
+    padding: 1rem;
+    margin: 1rem;
+    background-image: -webkit-linear-gradient(90deg, var(--primary-font-color), var(--primary-font-color), var(--secondary-font-color), var(--primary-font-color), var(--primary-font-color));
+    -webkit-background-clip: text;
+    color: transparent;
+    display: flex;
+    justify-content: center;
+
+}
+
 #logInitials {
     background-color: var(--secondary-background-color);
     border: solid var(--primary-background-color) 2px;
     border-radius: 2%;
-    height: 80vh;
+    height: 60vh;
     width: 65vw;
     display: flex;
     flex-flow: column nowrap;
@@ -114,5 +134,17 @@ button {
     /* border: black solid 1px; */
     border: none;
     box-shadow: inset 0px 0px 5px var(--light-shadow), 0px 0px 5px var(--dark-shadow);
-    
+
+}
+
+a {
+    width: 25vw;
+    text-decoration: none;
+    text-align: center;
+    position: relative;
+    right: 40vh;
+    /* color: var(--primary-font-color) */
+    background-image: -webkit-linear-gradient(90deg, var(--primary-font-color), var(--secondary-font-color), var(--primary-font-color));
+    -webkit-background-clip: text;
+    color: transparent;
 }
