@@ -68,7 +68,7 @@ main {
     align-items: center;
     /* add overflow incase I want to display more scores or
     incase of screen shrinkage */
-    /* overflow-y: auto; */
+    overflow-y: auto;
 }
 
 
